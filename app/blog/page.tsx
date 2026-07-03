@@ -133,23 +133,23 @@ export default function BlogPage() {
         </FadeIn>
 
         {/* Notebook grid */}
-        <StaggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" stagger={0.1}>
+        <StaggerChildren className="grid grid-cols-1 sm:grid-cols-2 gap-6" stagger={0.1}>
           {visible.map(post => (
             <StaggerItem key={post.title}>
               <button onClick={() => setOpen(post.title)}
                 className="group w-full text-left relative rounded-2xl overflow-hidden border cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
                 style={{ borderColor: `${post.color}25`, background: "rgba(12,6,16,0.9)" }}>
                 <div className="h-[3px] w-full" style={{ background: post.topColor }} />
-                <div className="p-5">
+                <div className="p-7">
                   <div className="flex justify-between items-start mb-2">
-                    <div className="font-mono text-xs text-white/30">{post.date}</div>
-                    {post.readTime && <div className="font-mono text-xs text-white/25">{post.readTime}</div>}
+                    <div className="font-mono text-xs text-white/45">{post.date}</div>
+                    {post.readTime && <div className="font-mono text-xs text-white/40">{post.readTime}</div>}
                   </div>
-                  <div className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: `${post.color}bb` }}>
+                  <div className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: `${post.color}cc` }}>
                     {post.track === "curated" ? "📡 " : "✍️ "}{post.category}
                   </div>
-                  <div className="font-bold text-base text-white/85 group-hover:text-white transition-colors leading-snug mb-2">{post.title}</div>
-                  <div className="text-sm text-white/50 leading-relaxed mb-4">{post.teaser}</div>
+                  <div className="font-bold text-base text-white/90 group-hover:text-white transition-colors leading-snug mb-2">{post.title}</div>
+                  <div className="text-sm text-white/65 leading-relaxed mb-4">{post.teaser}</div>
                   <div className="flex flex-wrap gap-1.5">
                     {post.tags.map(t => (
                       <span key={t} className="text-xs font-mono px-2 py-0.5 rounded-full"
@@ -158,7 +158,7 @@ export default function BlogPage() {
                       </span>
                     ))}
                   </div>
-                  <div className="mt-4 text-xs font-semibold" style={{ color: `${post.color}70` }}>Read →</div>
+                  <div className="mt-4 text-xs font-semibold" style={{ color: `${post.color}99` }}>Read →</div>
                 </div>
               </button>
             </StaggerItem>
@@ -191,7 +191,7 @@ export default function BlogPage() {
                   {openPost.category}
                 </div>
                 <h2 className="text-2xl font-black text-white leading-tight mb-8">{openPost.title}</h2>
-                <div className="text-base text-white/65 leading-relaxed space-y-5">
+                <div className="text-base text-white/75 leading-relaxed space-y-5">
                   {openPost.content.split("\n\n").map((para, i) => {
                     if (para.startsWith("**") && para.endsWith("**")) {
                       return <h3 key={i} className="text-base font-bold text-white/85 mt-6 mb-2">{para.replace(/\*\*/g, "")}</h3>;

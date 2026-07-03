@@ -59,20 +59,20 @@ export default function ProjectsPage() {
                     <div className="w-2.5 h-2.5 rounded-full transition-all duration-200 group-hover:opacity-100 opacity-60"
                       style={{ background: p.accent }} />
                   </div>
-                  <div className="font-mono text-xs text-white/20 ml-1.5">~/projects/{p.id}</div>
-                  <div className="ml-auto font-mono text-xs text-white/20">{p.date}</div>
+                  <div className="font-mono text-xs text-white/35 ml-1.5">~/projects/{p.id}</div>
+                  <div className="ml-auto font-mono text-xs text-white/35">{p.date}</div>
                 </div>
 
                 {/* Terminal body */}
                 <div className="p-6">
-                  <div className="font-mono text-xs mb-3" style={{ color: `${p.accent}65` }}>
+                  <div className="font-mono text-xs mb-3" style={{ color: `${p.accent}80` }}>
                     $ cat README.md
                   </div>
-                  <div className="font-mono text-[11px] mb-1 uppercase tracking-wider" style={{ color: `${p.accent}55` }}>
+                  <div className="font-mono text-[11px] mb-1 uppercase tracking-wider" style={{ color: `${p.accent}70` }}>
                     [{p.badge}]
                   </div>
-                  <h2 className="text-xl font-bold text-white/90 group-hover:text-white transition-colors mb-2">{p.title}</h2>
-                  <p className="text-sm text-white/55 leading-relaxed mb-5">{p.tldr}</p>
+                  <h2 className="text-xl font-bold text-white group-hover:text-white transition-colors mb-2">{p.title}</h2>
+                  <p className="text-sm text-white/70 leading-relaxed mb-5">{p.tldr}</p>
 
                   <div className="flex flex-wrap gap-2 mb-5">
                     {p.chips.map(c => (

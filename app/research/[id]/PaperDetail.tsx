@@ -21,8 +21,8 @@ export default function PaperDetail({ paper }: { paper: Paper }) {
               onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = `${accent}70`}>
               ← Research
             </Link>
-            <span className="text-white/20">/</span>
-            <span className="text-white/35 truncate max-w-xs">{paper.title}</span>
+            <span className="text-white/30">/</span>
+            <span className="text-white/55 truncate max-w-xs">{paper.title}</span>
           </div>
         </FadeIn>
 
@@ -34,10 +34,10 @@ export default function PaperDetail({ paper }: { paper: Paper }) {
                 style={{ color: accent, borderColor: `${accent}40`, background: `${accent}10` }}>
                 {trackLabel}
               </span>
-              <span className="font-mono text-sm text-white/35">{paper.venue} · {paper.year}</span>
+              <span className="font-mono text-sm text-white/50">{paper.venue} · {paper.year}</span>
             </div>
             <h1 className="text-3xl font-black text-white leading-tight mb-4">{paper.title}</h1>
-            <p className="text-lg text-white/65 leading-relaxed border-l-2 pl-4" style={{ borderColor: `${accent}50` }}>
+            <p className="text-lg text-white/75 leading-relaxed border-l-2 pl-4" style={{ borderColor: `${accent}50` }}>
               {paper.summary}
             </p>
           </div>
@@ -76,7 +76,7 @@ export default function PaperDetail({ paper }: { paper: Paper }) {
                         <span className="w-3 h-3 rounded-full bg-yellow-500/50" />
                         <span className="w-3 h-3 rounded-full bg-green-500/50" />
                       </div>
-                      <span className="font-mono text-xs text-white/30 ml-2">{section.code.title}</span>
+                      <span className="font-mono text-xs text-white/50 ml-2">{section.code.title}</span>
                     </div>
                     <pre className="p-5 font-mono text-sm leading-relaxed overflow-x-auto"
                       style={{ color: isImpl ? "#93c5fd" : "#fcd34d" }}>

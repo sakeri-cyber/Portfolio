@@ -79,8 +79,8 @@ export default function ResearchPage() {
                       <div className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: `${ACCENT_READ}90` }}>
                         {p.venue} · {p.year}
                       </div>
-                      <div className="font-bold text-base text-white/85 group-hover:text-white transition-colors mb-2 leading-snug">{p.title}</div>
-                      <p className="text-sm text-white/55 leading-relaxed mb-4">{p.summary}</p>
+                      <div className="font-bold text-base text-white/90 group-hover:text-white transition-colors mb-2 leading-snug">{p.title}</div>
+                      <p className="text-sm text-white/70 leading-relaxed mb-4">{p.summary}</p>
                       <div className="flex flex-wrap gap-1.5 mb-3">
                         {p.tags.map(t => (
                           <span key={t} className="text-xs font-mono px-2 py-0.5 rounded-full"

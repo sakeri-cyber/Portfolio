@@ -18,8 +18,8 @@ export default function ProjectDetail({ project }: { project: Project }) {
               onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = `${a}80`}>
               ← Projects
             </Link>
-            <span className="text-white/20">/</span>
-            <span className="text-white/40">{project.title}</span>
+            <span className="text-white/30">/</span>
+            <span className="text-white/55">{project.title}</span>
           </div>
         </FadeIn>
 
@@ -31,7 +31,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
                 style={{ color: a, borderColor: `${a}40`, background: `${a}10` }}>
                 {project.badge}
               </span>
-              <span className="font-mono text-sm text-white/35">{project.date}</span>
+              <span className="font-mono text-sm text-white/50">{project.date}</span>
             </div>
             <h1 className="text-3xl font-black text-white leading-tight mb-4">{project.title}</h1>
             <p className="text-lg text-white/70 leading-relaxed border-l-2 pl-4" style={{ borderColor: `${a}50` }}>
@@ -43,7 +43,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
         {/* Tech stack */}
         <FadeIn delay={0.1}>
           <div className="mb-12">
-            <div className="text-xs font-bold uppercase tracking-widest text-white/35 mb-3">Tech Stack</div>
+            <div className="text-xs font-bold uppercase tracking-widest text-white/50 mb-3">Tech Stack</div>
             <div className="flex flex-wrap gap-2">
               {project.chips.map(c => (
                 <span key={c} className="px-3 py-1 rounded-full font-mono text-sm border"
@@ -134,7 +134,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
                 )}
 
                 {section.note && (
-                  <div className="rounded-lg px-5 py-4 text-sm text-white/60 leading-relaxed border-l-2"
+                  <div className="rounded-lg px-5 py-4 text-sm text-white/72 leading-relaxed border-l-2"
                     style={{ background: `${a}08`, borderColor: `${a}40` }}>
                     <span className="font-semibold" style={{ color: a }}>Note: </span>{section.note}
                   </div>
@@ -151,7 +151,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
             onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = `${a}80`}>
             ← All Projects
           </Link>
-          <Link href="/research" className="text-sm font-semibold transition-colors text-white/30 hover:text-white/60">
+          <Link href="/research" className="text-sm font-semibold transition-colors text-white/45 hover:text-white/75">
             Research →
           </Link>
         </div>

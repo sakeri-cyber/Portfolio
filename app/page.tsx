@@ -47,7 +47,7 @@ function Metric({ count, suffix, label, sub }: { count: number; suffix: string; 
 function Chip({ label }: { label: string }) {
   return (
     <span className="inline-block px-2.5 py-1 rounded-md font-mono text-xs border transition-all duration-200 cursor-default hover:text-cyan-400 hover:border-cyan-400/30 hover:bg-cyan-400/[0.07]"
-      style={{ background: "rgba(255,255,255,0.04)", borderColor: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.55)" }}>
+      style={{ background: "rgba(255,255,255,0.04)", borderColor: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.70)" }}>
       {label}
     </span>
   );
@@ -155,7 +155,7 @@ export default function HomePage() {
 
         {/* About */}
         <FadeIn delay={0.1}>
-          <p className="text-base text-white/60 leading-relaxed max-w-3xl mb-14 pl-4"
+          <p className="text-base text-white/72 leading-relaxed max-w-3xl mb-14 pl-4"
             style={{ borderLeft: "2px solid rgba(0,229,255,0.25)" }}>
             Nearly 3 years of production experience at <strong className="text-white/85 font-semibold">Sharechat</strong> — a social platform with over{" "}
             <strong className="text-cyan-400 font-semibold">180 million monthly active users</strong>. Joint MSc in Data Science &amp; AI from{" "}
@@ -166,7 +166,7 @@ export default function HomePage() {
 
         {/* Metrics */}
         <FadeIn>
-          <h2 className="text-xs font-bold uppercase tracking-widest text-white/35 mb-5">Impact, By the Numbers</h2>
+          <h2 className="text-xs font-bold uppercase tracking-widest text-white/50 mb-5">Impact, By the Numbers</h2>
         </FadeIn>
         <StaggerChildren className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-16" stagger={0.07}>
           <StaggerItem><Metric count={87}  suffix="%" label="Latency Reduction" sub="Python → Go migration" /></StaggerItem>
@@ -178,7 +178,7 @@ export default function HomePage() {
 
         {/* Tech Stack */}
         <FadeIn>
-          <h2 className="text-xs font-bold uppercase tracking-widest text-white/35 mb-6">Technology Stack</h2>
+          <h2 className="text-xs font-bold uppercase tracking-widest text-white/50 mb-6">Technology Stack</h2>
         </FadeIn>
         <StaggerChildren className="flex flex-col gap-5 mb-16" stagger={0.08}>
           {STACK.map(({ group, chips }) => (
@@ -191,7 +191,7 @@ export default function HomePage() {
 
         {/* Featured Work */}
         <FadeIn>
-          <h2 className="text-xs font-bold uppercase tracking-widest text-white/35 mb-6">Featured Work</h2>
+          <h2 className="text-xs font-bold uppercase tracking-widest text-white/50 mb-6">Featured Work</h2>
         </FadeIn>
         <StaggerChildren className="grid sm:grid-cols-2 gap-4 mb-16" stagger={0.1}>
           {FEATURED.map(p => (
@@ -202,8 +202,8 @@ export default function HomePage() {
                 onMouseEnter={e => (e.currentTarget as HTMLElement).style.borderColor = "rgba(0,229,255,0.25)"}
                 onMouseLeave={e => (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.07)"}>
                 <div className="font-bold text-base text-white/85 group-hover:text-white transition-colors">{p.title}</div>
-                <div className="text-sm text-white/50 leading-relaxed">{p.tldr}</div>
-                <div className="font-mono text-xs text-cyan-400/50 mt-1">{p.stack}</div>
+                <div className="text-sm text-white/65 leading-relaxed">{p.tldr}</div>
+                <div className="font-mono text-xs text-cyan-400/65 mt-1">{p.stack}</div>
                 <div className="absolute right-4 top-4 text-white/20 group-hover:text-cyan-400/50 transition-colors text-sm">→</div>
               </Link>
             </StaggerItem>
@@ -212,7 +212,7 @@ export default function HomePage() {
 
         {/* Education */}
         <FadeIn>
-          <h2 className="text-xs font-bold uppercase tracking-widest text-white/35 mb-6">Education</h2>
+          <h2 className="text-xs font-bold uppercase tracking-widest text-white/50 mb-6">Education</h2>
         </FadeIn>
         <StaggerChildren className="flex flex-col gap-4 mb-14" stagger={0.1}>
           {[
@@ -224,7 +224,7 @@ export default function HomePage() {
                 style={{ background: "rgba(0,229,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", borderLeft: "2px solid rgba(0,229,255,0.45)" }}>
                 <div className="font-bold text-base text-white/85">{e.degree}</div>
                 <div className="text-base text-cyan-400/80 font-medium mt-1">{e.inst}</div>
-                <div className="font-mono text-xs text-white/35 mt-1.5">{e.meta}</div>
+                <div className="font-mono text-xs text-white/50 mt-1.5">{e.meta}</div>
               </div>
             </StaggerItem>
           ))}

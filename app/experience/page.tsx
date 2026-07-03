@@ -105,14 +105,14 @@ export default function ExperiencePage() {
                         <div className="text-base font-semibold mt-0.5" style={{ color: ACCENT }}>{role.company}</div>
                         <div className="text-sm text-white/40 mt-0.5">{role.location}</div>
                       </div>
-                      <div className="font-mono text-sm text-white/35">{role.date}</div>
+                      <div className="font-mono text-sm text-white/50">{role.date}</div>
                     </div>
 
-                    <p className="text-sm text-white/60 mt-4 mb-5 leading-relaxed">{role.summary}</p>
+                    <p className="text-sm text-white/72 mt-4 mb-5 leading-relaxed">{role.summary}</p>
 
                     <ul className="flex flex-col gap-3 mb-6">
                       {role.bullets.map((b, j) => (
-                        <li key={j} className="flex gap-3 text-sm text-white/60 leading-relaxed">
+                        <li key={j} className="flex gap-3 text-sm text-white/72 leading-relaxed">
                           <span className="mt-2 flex-shrink-0 w-1.5 h-1.5 rounded-full" style={{ background: ACCENT }} />
                           <span>
                             {b.highlight
@@ -131,7 +131,7 @@ export default function ExperiencePage() {
                     <div className="flex flex-col gap-3 mb-6">
                       {role.metrics.map(m => (
                         <div key={m.label}>
-                          <div className="flex justify-between text-xs text-white/40 mb-1">
+                          <div className="flex justify-between text-xs text-white/55 mb-1">
                             <span>{m.label}</span><span>{m.pct}%</span>
                           </div>
                           <AnimatedBar pct={m.pct} color={ACCENT} />
@@ -179,8 +179,8 @@ export default function ExperiencePage() {
                   style={{ background: `${ACCENT}06`, border: `1px solid ${ACCENT}15`, borderLeft: `3px solid ${ACCENT}60` }}>
                   <div className="font-bold text-base text-white/85">{e.degree}</div>
                   <div className="text-base font-semibold mt-1" style={{ color: ACCENT }}>{e.inst}</div>
-                  <div className="font-mono text-xs text-white/35 mt-1.5">{e.meta}</div>
-                  {e.detail && <p className="text-sm text-white/50 mt-3 leading-relaxed">{e.detail}</p>}
+                  <div className="font-mono text-xs text-white/50 mt-1.5">{e.meta}</div>
+                  {e.detail && <p className="text-sm text-white/65 mt-3 leading-relaxed">{e.detail}</p>}
                   {e.tags.length > 0 && (
                     <div className="flex flex-wrap gap-2 mt-4">
                       {e.tags.map(t => (
@@ -205,7 +205,7 @@ export default function ExperiencePage() {
               "Multi-event winner — Stage and Street Play Dramatics at national-level inter-college events across India",
             ].map(a => (
               <StaggerItem key={a}>
-                <div className="flex gap-3 text-sm text-white/60 leading-relaxed">
+                <div className="flex gap-3 text-sm text-white/70 leading-relaxed">
                   <span className="flex-shrink-0 font-bold" style={{ color: ACCENT }}>★</span>
                   <span>{a}</span>
                 </div>
