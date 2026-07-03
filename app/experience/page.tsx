@@ -1,5 +1,8 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { FadeIn, StaggerChildren, StaggerItem } from "@/components/Motion";
+
+const ACCENT = "#a78bfa";
 
 function AnimatedBar({ pct, color }: { pct: number; color: string }) {
   const [width, setWidth] = useState(0);
@@ -10,14 +13,14 @@ function AnimatedBar({ pct, color }: { pct: number; color: string }) {
     const obs = new IntersectionObserver(([e]) => {
       if (!e.isIntersecting) return;
       obs.disconnect();
-      setTimeout(() => setWidth(pct), 100);
+      setTimeout(() => setWidth(pct), 150);
     }, { threshold: 0.5 });
     obs.observe(el);
     return () => obs.disconnect();
   }, [pct]);
   return (
-    <div ref={ref} className="h-1 rounded-full overflow-hidden mt-1" style={{ background: "rgba(255,255,255,0.06)" }}>
-      <div className="h-full rounded-full transition-all duration-1000 ease-out" style={{ width: `${width}%`, background: `linear-gradient(90deg, ${color}, ${color}cc)` }} />
+    <div ref={ref} className="h-1.5 rounded-full overflow-hidden mt-1.5" style={{ background: "rgba(255,255,255,0.07)" }}>
+      <div className="h-full rounded-full transition-all duration-1000 ease-out" style={{ width: `${width}%`, background: `linear-gradient(90deg, ${color}, ${color}99)` }} />
     </div>
   );
 }
@@ -33,9 +36,9 @@ const ROLES = [
       { text: "Async job queue + email notification system to prevent API gateway timeouts; migrated Node.js backend to Django for a cleaner async model." },
       { text: "Claude 3.5 Sonnet semantic router to classify queries and dispatch between a Neo4j knowledge graph and the BIOMNI biomedical agent — eliminating hard-coded keyword routing." },
       { text: "Dynamic schema pruning + TOON compression on Neo4j context payloads — reduced token costs by 90% and cut latency from 2 minutes to 15 seconds.", highlight: "90% token cost reduction" },
-      { text: "LLM-as-judge few-shot testing pipeline: synthetic evaluation dataset and production quality gate; designed for future REINFORCE fine-tuning of local models." },
+      { text: "LLM-as-judge few-shot testing pipeline with a production quality gate; designed for future REINFORCE fine-tuning of local models." },
     ],
-    metrics: [{ label: "Token cost reduction", pct: 90 }, { label: "Latency: 2min → 15s", pct: 87 }],
+    metrics: [{ label: "Token cost reduction", pct: 90 }, { label: "Latency improvement (2min → 15s)", pct: 87 }],
     tags: ["Claude 3.5 Sonnet", "Neo4j", "Django", "LLM-as-Judge", "TOON Compression", "Async Python"],
   },
   {
@@ -43,14 +46,14 @@ const ROLES = [
     company: "Sharechat (Mohalla Tech)",
     location: "Livestream Team · Bangalore, India",
     date: "Apr 2023 – Jul 2024",
-    summary: "Owned the full ML lifecycle for the Livestream notification stack — from feature engineering to model training to production inference — on a platform with 180M+ MAU.",
+    summary: "Owned the full ML lifecycle for the Livestream notification stack — feature engineering, model training, and production inference — on a platform with 180M+ MAU.",
     bullets: [
-      { text: "XGBoost notification ranking system: engineered custom user-content affinity features and conducted A/B tests yielding a 17% CTR gain and 2.75% lift in user time spent.", highlight: "17% CTR gain" },
-      { text: "Go monolith migration: moved inference models from Python/FastAPI microservices to a GoLang monolith, reducing median inference latency by 87% by eliminating Python GIL contention and HTTP overhead.", highlight: "87% latency reduction" },
+      { text: "XGBoost notification ranking system: engineered custom user-content affinity features; A/B tests yielded a 17% CTR gain and 2.75% lift in user time spent.", highlight: "17% CTR gain" },
+      { text: "Go monolith migration: moved inference from Python/FastAPI microservices to a GoLang monolith, reducing median inference latency by 87% by eliminating Python GIL contention and HTTP overhead.", highlight: "87% latency reduction" },
       { text: "Data integrity infrastructure: aggregated model features using Tardis; built Redash dashboards and Monte Carlo-powered Slack alerting — maintained 95% data integrity across training pipelines.", highlight: "95% data integrity" },
       { text: "Training pipeline monitoring: set up observability for model drift, feature distribution shifts, and inference latency regressions." },
     ],
-    metrics: [{ label: "Latency reduction (Python → Go)", pct: 87 }, { label: "CTR gain", pct: 17 }, { label: "Data integrity", pct: 95 }],
+    metrics: [{ label: "Latency reduction (Python → Go)", pct: 87 }, { label: "CTR gain", pct: 17 }, { label: "Data integrity maintained", pct: 95 }],
     tags: ["XGBoost", "GoLang", "FastAPI", "A/B Testing", "Tardis", "Monte Carlo", "Redash"],
   },
   {
@@ -70,87 +73,91 @@ const ROLES = [
   },
 ];
 
-const ACCENT = "#a78bfa";
-
 export default function ExperiencePage() {
   return (
     <div className="min-h-screen" style={{ background: "radial-gradient(ellipse 80% 60% at 85% 0%, #12102a 0%, #080613 65%)" }}>
-      <div className="max-w-4xl mx-auto px-5 py-16">
-        <div className="mb-2 font-mono text-xs" style={{ color: `${ACCENT}60` }}>experience /</div>
-        <h1 className="text-3xl font-black text-white tracking-tight mb-2">Professional Journey</h1>
-        <p className="text-sm text-white/40 mb-12 max-w-xl">
-          Three years building ML systems that serve hundreds of millions of users — from product analytics to production inference engines to LLM orchestration research.
-        </p>
+      <div className="max-w-4xl mx-auto px-6 py-16">
+
+        <FadeIn direction="up">
+          <div className="mb-2 font-mono text-sm" style={{ color: `${ACCENT}60` }}>experience /</div>
+          <h1 className="text-4xl font-black text-white tracking-tight mb-3">Professional Journey</h1>
+          <p className="text-base text-white/60 mb-14 max-w-xl leading-relaxed">
+            Three years building ML systems that serve hundreds of millions of users — from product analytics to production inference engines to LLM orchestration research.
+          </p>
+        </FadeIn>
 
         {/* Timeline */}
-        <div className="relative pl-6 border-l-2" style={{ borderColor: `${ACCENT}20` }}>
-          {ROLES.map((role, i) => (
-            <div key={i} className="relative mb-14 last:mb-0">
-              {/* dot */}
-              <div className="absolute -left-[1.45rem] top-1.5 w-3 h-3 rounded-full border-2"
-                style={{ background: ACCENT, borderColor: ACCENT, boxShadow: `0 0 12px ${ACCENT}80` }} />
+        <div className="relative pl-7 border-l-2" style={{ borderColor: `${ACCENT}20` }}>
+          <StaggerChildren stagger={0.15}>
+            {ROLES.map((role, i) => (
+              <StaggerItem key={i}>
+                <div className="relative mb-16 last:mb-0">
+                  {/* dot */}
+                  <div className="absolute -left-[1.6rem] top-1.5 w-3.5 h-3.5 rounded-full border-2"
+                    style={{ background: ACCENT, borderColor: ACCENT, boxShadow: `0 0 14px ${ACCENT}80` }} />
 
-              <div className="rounded-xl p-6 transition-all duration-300"
-                style={{ background: "rgba(167,139,250,0.025)", border: "1px solid rgba(167,139,250,0.1)" }}>
-                {/* Header */}
-                <div className="flex flex-wrap justify-between gap-2 mb-1">
-                  <div>
-                    <div className="font-bold text-base text-white">{role.role}</div>
-                    <div className="text-sm font-semibold mt-0.5" style={{ color: ACCENT }}>{role.company}</div>
-                    <div className="text-[11px] text-white/35 mt-0.5">{role.location}</div>
-                  </div>
-                  <div className="font-mono text-xs text-white/30 pt-0.5">{role.date}</div>
-                </div>
+                  <div className="rounded-2xl p-7 transition-all duration-300"
+                    style={{ background: "rgba(167,139,250,0.04)", border: "1px solid rgba(167,139,250,0.12)" }}>
 
-                <p className="text-sm text-white/45 mt-3 mb-4 leading-relaxed">{role.summary}</p>
-
-                {/* Bullets */}
-                <ul className="flex flex-col gap-2 mb-5">
-                  {role.bullets.map((b, j) => (
-                    <li key={j} className="flex gap-2 text-sm text-white/55 leading-relaxed">
-                      <span className="mt-1 flex-shrink-0 w-1 h-1 rounded-full" style={{ background: ACCENT }} />
-                      <span>
-                        {b.highlight
-                          ? b.text.replace(b.highlight, `__BOLD__${b.highlight}__BOLD__`).split("__BOLD__").map((part, k) =>
-                              k % 2 === 1 ? <strong key={k} className="text-white/80 font-semibold">{part}</strong> : part
-                            )
-                          : b.text}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Impact bars */}
-                <div className="flex flex-col gap-2 mb-5">
-                  {role.metrics.map(m => (
-                    <div key={m.label}>
-                      <div className="flex justify-between text-[10px] text-white/30 mb-1">
-                        <span>{m.label}</span><span>{m.pct}%</span>
+                    <div className="flex flex-wrap justify-between gap-2 mb-2">
+                      <div>
+                        <div className="font-bold text-lg text-white">{role.role}</div>
+                        <div className="text-base font-semibold mt-0.5" style={{ color: ACCENT }}>{role.company}</div>
+                        <div className="text-sm text-white/40 mt-0.5">{role.location}</div>
                       </div>
-                      <AnimatedBar pct={m.pct} color={ACCENT} />
+                      <div className="font-mono text-sm text-white/35">{role.date}</div>
                     </div>
-                  ))}
-                </div>
 
-                {/* Tags */}
-                <div className="flex flex-wrap gap-1.5">
-                  {role.tags.map(t => (
-                    <span key={t} className="px-2 py-0.5 rounded text-[10px] font-mono"
-                      style={{ background: `${ACCENT}0c`, border: `1px solid ${ACCENT}25`, color: ACCENT }}>
-                      {t}
-                    </span>
-                  ))}
+                    <p className="text-sm text-white/60 mt-4 mb-5 leading-relaxed">{role.summary}</p>
+
+                    <ul className="flex flex-col gap-3 mb-6">
+                      {role.bullets.map((b, j) => (
+                        <li key={j} className="flex gap-3 text-sm text-white/60 leading-relaxed">
+                          <span className="mt-2 flex-shrink-0 w-1.5 h-1.5 rounded-full" style={{ background: ACCENT }} />
+                          <span>
+                            {b.highlight
+                              ? b.text.split(b.highlight).map((part, k, arr) =>
+                                  k < arr.length - 1
+                                    ? <span key={k}>{part}<strong className="text-white/85 font-semibold">{b.highlight}</strong></span>
+                                    : <span key={k}>{part}</span>
+                                )
+                              : b.text}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* Impact bars */}
+                    <div className="flex flex-col gap-3 mb-6">
+                      {role.metrics.map(m => (
+                        <div key={m.label}>
+                          <div className="flex justify-between text-xs text-white/40 mb-1">
+                            <span>{m.label}</span><span>{m.pct}%</span>
+                          </div>
+                          <AnimatedBar pct={m.pct} color={ACCENT} />
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="flex flex-wrap gap-2">
+                      {role.tags.map(t => (
+                        <span key={t} className="px-2.5 py-1 rounded-full text-xs font-mono"
+                          style={{ background: `${ACCENT}0c`, border: `1px solid ${ACCENT}25`, color: ACCENT }}>
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          ))}
+              </StaggerItem>
+            ))}
+          </StaggerChildren>
         </div>
 
         {/* Education */}
         <div className="mt-16">
-          <h2 className="text-[10px] font-bold uppercase tracking-widest mb-6" style={{ color: `${ACCENT}60` }}>Education</h2>
-
-          <div className="flex flex-col gap-4">
+          <FadeIn><h2 className="text-xs font-bold uppercase tracking-widest mb-7" style={{ color: `${ACCENT}60` }}>Education</h2></FadeIn>
+          <StaggerChildren className="flex flex-col gap-4" stagger={0.1}>
             {[
               {
                 degree: "Joint MSc · Data Science and Artificial Intelligence",
@@ -167,40 +174,44 @@ export default function ExperiencePage() {
                 tags: [],
               },
             ].map(e => (
-              <div key={e.inst} className="rounded-r-xl pl-4 pr-5 py-4"
-                style={{ background: `${ACCENT}08`, border: `1px solid ${ACCENT}15`, borderLeft: `3px solid ${ACCENT}60` }}>
-                <div className="font-bold text-sm text-white/80">{e.degree}</div>
-                <div className="text-sm font-semibold mt-0.5" style={{ color: ACCENT }}>{e.inst}</div>
-                <div className="font-mono text-[10px] text-white/30 mt-1">{e.meta}</div>
-                {e.detail && <p className="text-xs text-white/40 mt-2 leading-relaxed">{e.detail}</p>}
-                {e.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-1.5 mt-3">
-                    {e.tags.map(t => (
-                      <span key={t} className="px-2 py-0.5 rounded text-[10px] font-mono"
-                        style={{ background: `${ACCENT}0c`, border: `1px solid ${ACCENT}25`, color: ACCENT }}>{t}</span>
-                    ))}
-                  </div>
-                )}
-              </div>
+              <StaggerItem key={e.inst}>
+                <div className="rounded-r-2xl pl-5 pr-6 py-5"
+                  style={{ background: `${ACCENT}06`, border: `1px solid ${ACCENT}15`, borderLeft: `3px solid ${ACCENT}60` }}>
+                  <div className="font-bold text-base text-white/85">{e.degree}</div>
+                  <div className="text-base font-semibold mt-1" style={{ color: ACCENT }}>{e.inst}</div>
+                  <div className="font-mono text-xs text-white/35 mt-1.5">{e.meta}</div>
+                  {e.detail && <p className="text-sm text-white/50 mt-3 leading-relaxed">{e.detail}</p>}
+                  {e.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mt-4">
+                      {e.tags.map(t => (
+                        <span key={t} className="px-2.5 py-1 rounded-full text-xs font-mono"
+                          style={{ background: `${ACCENT}0c`, border: `1px solid ${ACCENT}25`, color: ACCENT }}>{t}</span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerChildren>
         </div>
 
         {/* Achievements */}
         <div className="mt-14">
-          <h2 className="text-[10px] font-bold uppercase tracking-widest mb-5" style={{ color: `${ACCENT}60` }}>Achievements</h2>
-          <div className="flex flex-col gap-3">
+          <FadeIn><h2 className="text-xs font-bold uppercase tracking-widest mb-5" style={{ color: `${ACCENT}60` }}>Achievements</h2></FadeIn>
+          <StaggerChildren className="flex flex-col gap-4" stagger={0.1}>
             {[
               "2nd Place — BEAR Challenge HPC Competition, University of Birmingham (hosted by NVIDIA)",
               "National Winner — Abacus & Mental Maths; represented India at the International Stage, Singapore",
               "Multi-event winner — Stage and Street Play Dramatics at national-level inter-college events across India",
             ].map(a => (
-              <div key={a} className="flex gap-3 text-sm text-white/50 leading-relaxed">
-                <span style={{ color: ACCENT }}>★</span>
-                <span>{a}</span>
-              </div>
+              <StaggerItem key={a}>
+                <div className="flex gap-3 text-sm text-white/60 leading-relaxed">
+                  <span className="flex-shrink-0 font-bold" style={{ color: ACCENT }}>★</span>
+                  <span>{a}</span>
+                </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerChildren>
         </div>
       </div>
     </div>
