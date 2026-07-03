@@ -40,37 +40,54 @@ export default function ProjectsPage() {
           </div>
         </FadeIn>
 
-        {/* Project cards — each links to detail page */}
+        {/* Project cards — terminal window style */}
         <StaggerChildren className="flex flex-col gap-5" stagger={0.1}>
           {visible.map(p => (
             <StaggerItem key={p.id}>
               <Link href={`/projects/${p.id}`}
-                className="group block rounded-2xl border p-7 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(52,211,153,0.08)]"
-                style={{ background: "rgba(52,211,153,0.03)", borderColor: "rgba(52,211,153,0.12)" }}
-                onMouseEnter={e => (e.currentTarget as HTMLElement).style.borderColor = `${p.accent}45`}
-                onMouseLeave={e => (e.currentTarget as HTMLElement).style.borderColor = "rgba(52,211,153,0.12)"}>
+                className="group block overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_48px_rgba(0,0,0,0.5)]"
+                style={{ borderRadius: "10px", background: "#070d0a", border: `1px solid ${p.accent}22` }}>
 
-                <div className="flex flex-wrap justify-between items-start gap-3 mb-3">
-                  <span className="text-xs font-bold uppercase tracking-widest" style={{ color: p.accent }}>{p.badge}</span>
-                  <span className="font-mono text-xs text-white/35">{p.date}</span>
+                {/* Terminal title bar */}
+                <div className="flex items-center gap-2 px-4 py-2.5 border-b"
+                  style={{ background: "rgba(255,255,255,0.025)", borderColor: `${p.accent}12` }}>
+                  <div className="flex gap-1.5">
+                    <div className="w-2.5 h-2.5 rounded-full transition-all duration-200 group-hover:opacity-100 opacity-60"
+                      style={{ background: "#ff5f56" }} />
+                    <div className="w-2.5 h-2.5 rounded-full transition-all duration-200 group-hover:opacity-100 opacity-60"
+                      style={{ background: "#ffbd2e" }} />
+                    <div className="w-2.5 h-2.5 rounded-full transition-all duration-200 group-hover:opacity-100 opacity-60"
+                      style={{ background: p.accent }} />
+                  </div>
+                  <div className="font-mono text-xs text-white/20 ml-1.5">~/projects/{p.id}</div>
+                  <div className="ml-auto font-mono text-xs text-white/20">{p.date}</div>
                 </div>
 
-                <h2 className="text-xl font-bold text-white/90 group-hover:text-white transition-colors mb-2">{p.title}</h2>
-                <p className="text-sm text-white/60 leading-relaxed mb-5">{p.tldr}</p>
+                {/* Terminal body */}
+                <div className="p-6">
+                  <div className="font-mono text-xs mb-3" style={{ color: `${p.accent}65` }}>
+                    $ cat README.md
+                  </div>
+                  <div className="font-mono text-[11px] mb-1 uppercase tracking-wider" style={{ color: `${p.accent}55` }}>
+                    [{p.badge}]
+                  </div>
+                  <h2 className="text-xl font-bold text-white/90 group-hover:text-white transition-colors mb-2">{p.title}</h2>
+                  <p className="text-sm text-white/55 leading-relaxed mb-5">{p.tldr}</p>
 
-                <div className="flex flex-wrap gap-2 mb-5">
-                  {p.chips.map(c => (
-                    <span key={c} className="px-2.5 py-1 rounded-full font-mono text-xs border"
-                      style={{ background: `${p.accent}0c`, borderColor: `${p.accent}25`, color: `${p.accent}cc` }}>
-                      {c}
-                    </span>
-                  ))}
-                </div>
+                  <div className="flex flex-wrap gap-2 mb-5">
+                    {p.chips.map(c => (
+                      <span key={c} className="px-2.5 py-0.5 rounded font-mono text-xs border"
+                        style={{ background: `${p.accent}08`, borderColor: `${p.accent}1e`, color: `${p.accent}aa` }}>
+                        {c}
+                      </span>
+                    ))}
+                  </div>
 
-                <div className="flex items-center gap-1.5 text-sm font-semibold transition-colors" style={{ color: `${p.accent}80` }}
-                  onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = p.accent}
-                  onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = `${p.accent}80`}>
-                  Read full writeup →
+                  <div className="flex items-center gap-2 font-mono text-xs" style={{ color: `${p.accent}55` }}>
+                    <span>$</span>
+                    <span>Read full writeup</span>
+                    <span className="inline-block w-1.5 h-3.5 align-middle animate-pulse" style={{ background: `${p.accent}70` }} />
+                  </div>
                 </div>
               </Link>
             </StaggerItem>

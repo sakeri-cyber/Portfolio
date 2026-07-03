@@ -87,14 +87,16 @@ export default function HomePage() {
 
       {/* Aurora glow */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden>
-        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full opacity-[0.07]"
-          style={{ background: "#00e5ff", filter: "blur(120px)", animation: "drift 12s ease-in-out infinite alternate" }} />
-        <div className="absolute top-20 right-0 w-[400px] h-[400px] rounded-full opacity-[0.05]"
-          style={{ background: "#0047ff", filter: "blur(100px)", animation: "drift 16s ease-in-out infinite alternate-reverse" }} />
+        <div className="absolute -top-40 -left-40 w-[800px] h-[800px] rounded-full"
+          style={{ background: "#00e5ff", filter: "blur(100px)", opacity: 0.2, animation: "drift 12s ease-in-out infinite alternate" }} />
+        <div className="absolute top-10 right-[-100px] w-[600px] h-[600px] rounded-full"
+          style={{ background: "#1a4fff", filter: "blur(110px)", opacity: 0.14, animation: "drift 16s ease-in-out infinite alternate-reverse" }} />
+        <div className="absolute bottom-[-100px] left-[30%] w-[500px] h-[500px] rounded-full"
+          style={{ background: "#7c3aed", filter: "blur(130px)", opacity: 0.1, animation: "drift 22s ease-in-out infinite alternate" }} />
         <style>{`
           @keyframes drift {
             from { transform: translate(0,0) scale(1); }
-            to   { transform: translate(40px, 30px) scale(1.1); }
+            to   { transform: translate(70px, 50px) scale(1.18); }
           }
         `}</style>
       </div>
