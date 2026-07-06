@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import { PROJECTS, getProject } from "@/lib/projects";
 import ProjectDetail from "./ProjectDetail";
+import AnswerEngineDetail from "./AnswerEngineDetail";
 
 export function generateStaticParams() {
   return PROJECTS.map(p => ({ id: p.id }));
@@ -17,5 +17,6 @@ export default async function ProjectPage({ params }: { params: Promise<{ id: st
   const { id } = await params;
   const project = getProject(id);
   if (!project) notFound();
+  if (id === "answer-engine") return <AnswerEngineDetail project={project} />;
   return <ProjectDetail project={project} />;
 }
