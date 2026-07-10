@@ -24,6 +24,18 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
+    id: "nautilus",
+    title: "Nautilus — Dynamic Container-Freight Quote Pricing Engine",
+    date: "Jul 2026",
+    badge: "Self-Project",
+    tldr: "A decision-optimisation engine that prices ocean-freight quotes by maximising expected contribution (price − cost) × P(win | price), built on a synthetic world with a known ground truth — a calibrated demand model, a per-quote optimiser, a capacity-aware portfolio LP, a probabilistic rate forecaster, and an off-policy evaluation toolkit that uncovered a genuine 'optimiser's curse.'",
+    chips: ["LightGBM", "PuLP (Linear Programming)", "Conformal Prediction", "Doubly Robust OPE", "Isotonic Calibration", "scikit-learn", "pytest", "GitHub Actions"],
+    categories: ["ML Systems", "Decision Optimisation"],
+    githubUrl: "https://github.com/sakeri-cyber/Nautilus-Dynamic-Pricing-Engine",
+    accent: "#2dd4bf",
+    sections: [],
+  },
+  {
     id: "codaf",
     title: "CODAF — Co-Adaptive Allocation Framework",
     date: "Jun 2025 – Sep 2025",
